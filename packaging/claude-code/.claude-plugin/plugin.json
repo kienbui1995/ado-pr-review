@@ -1,0 +1,10 @@
+{
+  "name": "ado-pr-review",
+  "description": "Azure DevOps pull-request code review: multi-lens parallel review with confidence-based scoring, backed by a bundled ADO MCP server (az CLI). Dry-run by default; posts a review comment only with --post.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Kien Bui"
+  },
+  "homepage": "https://github.com/kienbui1995/ado-pr-review",
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+{
+  "ado-pr-review": {
+    "command": "python3",
+    "args": ["${CLAUDE_PLUGIN_ROOT}/server/ado_mcp_server.py"],
+    "env": {
+      "ADO_ORG": "https://dev.azure.com/your-org"
+    }
+  }
+}

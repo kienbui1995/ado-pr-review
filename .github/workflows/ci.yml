@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile all sources (no third-party deps)
+        run: python -m compileall -q server scripts install.py tests
+      - name: Server protocol smoke test
+        run: python tests/test_server_smoke.py
+      - name: Installer print mode (no writes)
+        run: python install.py --print
+      - name: Validate plugin JSON
+        run: |
+          python - <<'PY'
+          import json, glob
+          for f in glob.glob("packaging/claude-code/**/*.json", recursive=True) + ["packaging/claude-code/.mcp.json"]:
+              json.load(open(f)); print("OK", f)
+          PY
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pipx install ruff || pip install ruff
+      - run: ruff check server scripts install.py tests || true

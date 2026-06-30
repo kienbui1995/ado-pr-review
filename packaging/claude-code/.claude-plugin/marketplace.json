@@ -1,0 +1,18 @@
+{
+  "name": "ado-pr-review",
+  "description": "Marketplace for the ado-pr-review plugin (Azure DevOps PR review + MCP server).",
+  "owner": {
+    "name": "Kien Bui"
+  },
+  "plugins": [
+    {
+      "name": "ado-pr-review",
+      "description": "Azure DevOps PR code review with a bundled ADO MCP server.",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "Kien Bui"
+      }
+    }
+  ]
+}
